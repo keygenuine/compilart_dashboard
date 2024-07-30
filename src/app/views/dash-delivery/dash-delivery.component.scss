@@ -1,0 +1,29 @@
+#bgAzul{
+    background-color:#5856D6;
+}
+.progress-group:hover{
+    transition: 0.3s all;
+    background-color: #212631c7;
+    color:white !important;
+    p{
+        color: white;
+    }
+}
+@media only screen and (min-width: 800px) {
+.progress-group-prepend{
+    min-width: 20px;
+}
+img{
+    width: 100px;
+    height: 100px;
+}
+}
+@media only screen and (max-width: 799px) {
+.progress-group-prepend{
+    min-width: 10px;
+}
+img{
+    width: 70px;
+    height: 70px;
+}
+}
