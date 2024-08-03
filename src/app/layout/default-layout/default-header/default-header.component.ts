@@ -146,7 +146,6 @@ export class DefaultHeaderComponent extends HeaderComponent {
   public newTasks = [
     { id: 0, title: 'Upgrade NPM', value: 0, color: 'info' },
     { id: 1, title: 'ReactJS Version', value: 25, color: 'danger' },
-    { id: 2, title: 'VueJS Version', value: 50, color: 'warning' },
     { id: 3, title: 'Add new layouts', value: 75, color: 'info' },
     { id: 4, title: 'Angular Version', value: 100, color: 'success' }
   ];
