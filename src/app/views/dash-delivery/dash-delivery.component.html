@@ -8,38 +8,32 @@
   <app-widgets-dropdown [elements]="bankname"/>
 
   <c-row class="mt-4 px-4">
-    <c-col xs>
-    <c-card class="mb-4">
-      <c-row>
-        <c-col md="6" xl="6" xs="12" class="ps-4">
-          <c-tabs [activeItemKey]="1" >
-            <c-tabs-list variant="underline" >
-              <button cTab [itemKey]="0"><img src="./assets/img/ifood.png" class="border rounded"></button>
-              <button cTab [itemKey]="1"><img src="./assets/img/aiqfome.png" class="border rounded"></button>
-              <button cTab [itemKey]="2"><img src="./assets/img/upzap.png" class="border rounded"></button>
-              <button cTab [itemKey]="3"><img src="./assets/img/uairango.png" class="border rounded"></button>
-            </c-tabs-list>
-            <c-tabs-content>
-              <c-tab-panel class="p-3" [itemKey]="0" >
-                <strong>IFood</strong> tab 
-              </c-tab-panel>
-              <c-tab-panel class="p-3" [itemKey]="1">
-                <strong>Aiqfome</strong> tab 
-              </c-tab-panel>
-              <c-tab-panel class="p-3" [itemKey]="2">
-                <strong>Upzap</strong> tab 
-              </c-tab-panel>
-              <c-tab-panel class="p-3" [itemKey]="3">
-                <strong>UaiRango</strong> tab 
-              </c-tab-panel>
-            </c-tabs-content>
-          </c-tabs>
+
+        <c-col md="6" xl="12" xs="12" class="justify-content-center text-center" >
+          <c-card-group class="mb-4" >
+            <c-card id="cardDelivery" *ngFor="let origem of jsonServer.vendasDelivery" 
+            class="d-flex justify-content-center"
+            [ngStyle]="{'border-color': dark==true ? origem.cor : 'none' , 'border-width':'0.5px'}"
+            >
+            <div>
+              <img cCardImg="top" src="./assets/img/{{origem.origem}}.png" style="width: 200px;height: 200px;">
+            </div>
+              <c-card-body>
+                <!-- <h5 cCardTitle>Vendas {{origem.origem}}</h5> -->
+                <p cCardText>
+                  Total de Vendas: <strong>{{origem.vendaTotal}}</strong> <br/>
+                  Ticket Medio: <strong>{{origem.ticketMedio}}</strong><br/>
+                  Numero de Pedidos: <strong>{{origem.numeroDePedidos}}</strong><br/>
+                </p>
+                <div style="height: 300px;">
+                  <canvas baseChart id="{{origem.origem}}" [height]="450" #chartVendasPorOrigemDeliveryRef class="mb-3"> </canvas> 
+                </div>
+              </c-card-body>
+            </c-card>
+          </c-card-group>
         </c-col>
-        <c-col md="6" xl="6" xs="12">
-          <canvas baseChart id="chartVendasPorOrigemDelivery" [height]="450" #chartVendasPorOrigemDeliveryRef class="mb-3"> </canvas>      
-        </c-col>
-      </c-row>
-    </c-card>
+        <c-col md="6" xl="12" xs="12">
+
     </c-col>
   </c-row>
   
@@ -87,7 +81,7 @@
                         <span class="text-body-secondary small d-flex me-3">
                           <i class="fa-solid fa-circle pt-1 me-3" style="color: green;"></i>
                           <div class="d-block">
-                            <p class="text-nowrap">{{produtos.produto}}</p>
+                            <p class="text-nowrap"><strong>{{produtos.produto}}</strong></p>
                             <p class="text-nowrap">Id: {{produtos.id}}</p>
                           </div>
                         </span>
@@ -144,10 +138,10 @@
         <c-card-body>
           <c-row>
             <c-col  md="6" xl="6" xs="12">
-              <canvas id="chartMotoboy" #chartMotoboyRef [height]="450" ></canvas>
+              <canvas id="chartMotoboyDelivery" #chartMotoboyRef [height]="450" ></canvas>
             </c-col>
             <c-col  md="1" xl="6" xs="12">
-              <canvas id="chartBairros" #chartBairrosRef [height]="450" ></canvas>
+              <canvas id="chartBairrosDelivery" #chartBairrosDeliveryRef [height]="450" ></canvas>
             </c-col>
           </c-row>
         </c-card-body>

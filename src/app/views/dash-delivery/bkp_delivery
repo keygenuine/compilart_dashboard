@@ -1,0 +1,50 @@
+          <!-- <c-tabs [activeItemKey]="1" class="w-100" >
+            <c-tabs-list variant="underline" >
+              <button cTab [itemKey]="0"><img src="./assets/img/ifood.png" class="border rounded"></button>
+              <button cTab [itemKey]="1"><img src="./assets/img/aiqfome.png" class="border rounded"></button>
+              <button cTab [itemKey]="2"><img src="./assets/img/upzap.png" class="border rounded"></button>
+              <button cTab [itemKey]="3"><img src="./assets/img/uairango.png" class="border rounded"></button>
+            </c-tabs-list>
+            <c-tabs-content>
+              <c-tab-panel class="p-3" [itemKey]="0" >
+                <table borderless cTable hover>
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Heading</th>
+                    <th scope="col">Heading</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>&#64;mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>&#64;fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colSpan="2">Larry the Bird</td>
+                    <td>&#64;twitter</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </c-tab-panel>
+              <c-tab-panel class="p-3" [itemKey]="1">
+                <strong>Aiqfome</strong> tab 
+              </c-tab-panel>
+              <c-tab-panel class="p-3" [itemKey]="2">
+                <strong>Upzap</strong> tab 
+              </c-tab-panel>
+              <c-tab-panel class="p-3" [itemKey]="3">
+                <strong>UaiRango</strong> tab 
+              </c-tab-panel>
+            </c-tabs-content>
+          </c-tabs> -->

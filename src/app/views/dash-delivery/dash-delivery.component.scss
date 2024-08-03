@@ -9,6 +9,17 @@
         color: white;
     }
 }
+#cardDeliveryLight{
+    border-color: none !important;
+}
+#cardDelivery:hover{
+    background-color: rgba(128, 128, 128, 0.199);
+}
+b{
+    color:#ff7676
+    // color:#86137D
+    // color:#EA1D29
+}
 @media only screen and (min-width: 800px) {
 .progress-group-prepend{
     min-width: 20px;

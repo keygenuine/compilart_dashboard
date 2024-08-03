@@ -11,12 +11,12 @@ export class ChartService {
   private myGlobalVariableSubject = new BehaviorSubject<string>('light');
   public myGlobalVariable$ = this.myGlobalVariableSubject.asObservable();
   
-    setGlobalVariable(newValue: string) {
-      this.myGlobalVariableSubject.next(newValue);
-    }
-    getGlobalVariable() {
-      return this.myGlobalVariableSubject.getValue();
-    }
+  setGlobalVariable(newValue: string) {
+    this.myGlobalVariableSubject.next(newValue);
+  }
+  getGlobalVariable() {
+    return this.myGlobalVariableSubject.getValue();
+  }
   public temaAtual: any;
   labels = [
     'January',
@@ -57,32 +57,7 @@ export class ChartService {
             display: true,
             text: 'Custom Chart Title'
           },
-          zoom: {
-            zoom: {
-              wheel: {
-                enabled: true,
-              },
-              pinch: {
-                enabled: true
-              },
-              mode: 'xy',
-              drag:true
-            },
-            pan: {
-              enabled: true,
-              mode: 'x',
-              rangeMin: {
-                x: null,
-                y: null
-              },
-              rangeMax: {
-                x: null,
-                y: null
-              },
-              speed: 20,
-              threshold: 10,
-            },
-          }
+
         },
         scales: {
           x: {
@@ -165,6 +140,17 @@ export class ChartService {
         corFundoGrafico = chartContext.createLinearGradient(0, 0, 0, 700);
         corFundoGrafico.addColorStop(0,corVerde);
         corFundoGrafico.addColorStop(1,'rgba(0,0,0,0)'); 
+        break
+      case 'vendasPorBairro':
+        tituloGrafico = 'Vendas Por Bairros' 
+        displayY = false 
+        break
+      case 'delivery':
+        tituloGrafico = 'Vendas Por Dia' 
+        displayY = false 
+        displayGridY = false
+        displayGridX = false
+        break
     }
     return new Chart(chartname,{
       type: typeChart,
@@ -197,7 +183,7 @@ export class ChartService {
           zoom: {
             zoom: {
               wheel: {
-                enabled: true,
+                enabled: false,
               },
               pinch: {
                 enabled: true

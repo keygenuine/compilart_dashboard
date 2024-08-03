@@ -41,11 +41,12 @@ import { BaseChartDirective } from 'ng2-charts';
 import { Tabs2Module } from '@coreui/angular';
 import { ColorModeService } from '@coreui/angular';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 import { textChangeRangeIsUnchanged } from 'typescript';
 @Component({
   selector: 'app-dash-delivery',
   standalone: true,
-  imports: [CardModule,Tabs2Module,NgFor,BaseChartDirective,ContainerComponent,WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent],
+  imports: [CommonModule,CardModule,Tabs2Module,NgFor,BaseChartDirective,ContainerComponent,WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent],
   templateUrl: './dash-delivery.component.html',
   styleUrl: './dash-delivery.component.scss'
 })
@@ -56,13 +57,19 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
   private chartBairros : any
   private vendasPorProdutoChartDelivery:any
   private estoqueProdutoChartDelivery:any
-  private chartVendasPorOrigemDelivery:any
+  private chartVendasPorOrigemDelivery1:any
+  private chartVendasPorOrigemDelivery2:any
+  private chartVendasPorOrigemDelivery3:any
+  private chartVendasPorOrigemDelivery4:any
+  private chartVendasPorOrigemDelivery5:any
+  private chartBairrosDelivery:any
   @ViewChild('chartFaturamentoDeliveryRef') chartFaturamentoDeliveryRef!: ElementRef;
   @ViewChild('chartMotoboyRef') chartMotoboyRef!: ElementRef;
   @ViewChild('chartBairrosRef') chartBairrosRef!: ElementRef;
   @ViewChild('vendasPorProdutoChartDeliveryRef') vendasPorProdutoChartDeliveryRef!: ElementRef;
   @ViewChild('estoqueProdutoChartDeliveryRef') estoqueProdutoChartDeliveryRef!: ElementRef;
   @ViewChild('chartVendasPorOrigemDeliveryRef') chartVendasPorOrigemDeliveryRef!: ElementRef;
+  @ViewChild('chartBairrosDeliveryRef') chartBairrosDeliveryRef!: ElementRef;
   getContext(chartRef:any){
     let canvas : HTMLCanvasElement = chartRef.nativeElement;
     let context : CanvasRenderingContext2D | null = canvas.getContext('2d')
@@ -76,8 +83,46 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
       {produto:'coca-cola',custo:110,venda:201,id:104},
       {produto:'refeições',custo:1500,venda:4000,id:86},
       {produto:'sucos',custo:100,venda:800,id:88},
+    ],
+    vendasDelivery:[
+      {
+        origem:"AiqFome",
+        vendaTotal:100,
+        ticketMedio:123,
+        numeroDePedidos:20,
+        cor:'#86137D'
+      },
+      {
+        origem:"iFood",
+        vendaTotal:1200,
+        ticketMedio:111,
+        numeroDePedidos:45,
+        cor:'#EA1D29'
+      },
+      {
+        origem:"uairango",
+        vendaTotal:1005,
+        ticketMedio:122,
+        numeroDePedidos:20,
+        cor:'#FF4F01'
+      },
+      {
+        origem:"upzap",
+        vendaTotal:1450,
+        ticketMedio:121,
+        numeroDePedidos:44,
+        cor:'#78C67B'
+      },
+      {
+        origem:"Estabelecimento",
+        vendaTotal:1450,
+        ticketMedio:121,
+        numeroDePedidos:44,
+        cor:'black'
+      },
     ]
   }
+  
   scroll(el: any) { 
     el.scrollIntoView({ behavior: "smooth" ,block: "start"}); 
         // Calcula a posição atual de rolagem e ajusta para cima em 100px
@@ -92,13 +137,11 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
             top: newScrollTop,
             behavior: "smooth"
         });
-} 
+  } 
   produtoGraficoGrupo(produtos:any){
     if(window.innerWidth<800){
       this.scroll(document.querySelector('#graficoGrupoScroll'))
     }
-    // window.scrollTo(0, 0) 
-
     this.vendasPorProdutoChartDelivery.data.datasets[0].label=[produtos]
     this.vendasPorProdutoChartDelivery.data.datasets[0].data=[100,20,44,4,15,0,7,8,159,10,15,12]
     this.vendasPorProdutoChartDelivery.update()
@@ -109,9 +152,13 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
     this.chartFaturamentoDelivery=this.chartService.newchart1('chartFaturamentoDelivery',this.getContext(this.chartFaturamentoDeliveryRef),'faturamento')
     this.vendasPorProdutoChartDelivery = this.chartService.newchart1('vendasPorProdutoChartDelivery',this.getContext(this.vendasPorProdutoChartDeliveryRef),'vendasPorProduto')
     this.estoqueProdutoChartDelivery = this.chartService.newchart1('estoqueProdutoChartDelivery',this.getContext(this.estoqueProdutoChartDeliveryRef),'estoqueProduto')
-    this.chartMotoboy = this.chartService.newchart1('chartMotoboy',this.getContext(this.chartMotoboyRef),'chartMotoboy')
-    this.chartVendasPorOrigemDelivery = this.chartService.newchart1('chartVendasPorOrigemDelivery',this.getContext(this.chartVendasPorOrigemDeliveryRef),'vendasPorOrigem')
-
+    this.chartMotoboy = this.chartService.newchart1('chartMotoboyDelivery',this.getContext(this.chartMotoboyRef),'chartMotoboy')
+    this.chartBairrosDelivery = this.chartService.newchart1('chartBairrosDelivery',this.getContext(this.chartBairrosDeliveryRef),'vendasPorOrigem')
+    this.chartVendasPorOrigemDelivery1 = this.chartService.newchart1(this.jsonServer.vendasDelivery[0].origem,this.getContext(this.chartVendasPorOrigemDeliveryRef),'delivery')
+    this.chartVendasPorOrigemDelivery2 = this.chartService.newchart1(this.jsonServer.vendasDelivery[1].origem,this.getContext(this.chartVendasPorOrigemDeliveryRef),'delivery')
+    this.chartVendasPorOrigemDelivery3 = this.chartService.newchart1(this.jsonServer.vendasDelivery[2].origem,this.getContext(this.chartVendasPorOrigemDeliveryRef),'delivery')
+    this.chartVendasPorOrigemDelivery4 = this.chartService.newchart1(this.jsonServer.vendasDelivery[3].origem,this.getContext(this.chartVendasPorOrigemDeliveryRef),'delivery')
+    this.chartVendasPorOrigemDelivery5 = this.chartService.newchart1(this.jsonServer.vendasDelivery[4].origem,this.getContext(this.chartVendasPorOrigemDeliveryRef),'delivery')
     // this.chartMotoboy=this.chartService.newchart('chartMotoboy','bar')
     // this.chartService.colorChart(this.chartMotoboy,this.getContext(this.chartMotoboyRef),'rgb(0, 162, 255)','rgba(151, 151, 151, 0)',750)
     // this.chartMotoboy.options.plugins.title.text = 'Produtividade Motoboy'
@@ -119,12 +166,12 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
     // this.chartMotoboy.options.scales.x.grid.display = false
     // this.chartMotoboy.update()
 
-    this.chartBairros=this.chartService.newchart('chartBairros','doughnut')
-    this.chartBairros.options.plugins.title.text = 'Vendas Por Bairros'
-    this.chartBairros.options.plugins.legend.display =true 
-    this.chartBairros.options.plugins.legend.position ='bottom' 
+    // this.chartBairros=this.chartService.newchart('chartBairros','doughnut')
+    // this.chartBairros.options.plugins.title.text = 'Vendas Por Bairros'
+    // this.chartBairros.options.plugins.legend.display =true 
+    // this.chartBairros.options.plugins.legend.position ='bottom' 
 
-    this.chartBairros.update()
+    // this.chartBairros.update()
 
 
   }
@@ -132,7 +179,7 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
     console.log(this.chartService.temaAtual)
   }
 
-
+  
   private subscription?: Subscription;
   public currentGlobalValue?: string;
 
@@ -143,32 +190,34 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
     this.subscription = this.chartService.myGlobalVariable$.subscribe(
       (newValue) => {
         this.onGlobalVariableChange(newValue); // Dispara a função quando a variável mudar
-
       }
     );
   }
+  dark = false
   private onGlobalVariableChange(newValue: string) {
     let cor = 'black'
+    this.dark=true
     if(newValue=='dark'){
       cor = 'white'
     }
-    this.chartFaturamentoDelivery.options.scales.x.ticks.color = cor
-    this.chartFaturamentoDelivery.update()
+
+    // this.chartFaturamentoDelivery.options.scales.x.ticks.color = cor
+    // this.chartFaturamentoDelivery.update()
     
-    this.chartMotoboy.options.scales.x.ticks.color = cor
-    this.chartMotoboy.update()
+    // this.chartMotoboy.options.scales.x.ticks.color = cor
+    // this.chartMotoboy.update()
 
-    this.chartBairros.options.scales.x.ticks.color = cor
-    this.chartBairros.update()
+    // this.chartBairros.options.scales.x.ticks.color = cor
+    // this.chartBairros.update()
 
-    this.vendasPorProdutoChartDelivery.options.scales.x.ticks.color = cor
-    this.vendasPorProdutoChartDelivery.update()
+    // this.vendasPorProdutoChartDelivery.options.scales.x.ticks.color = cor
+    // this.vendasPorProdutoChartDelivery.update()
 
-    this.estoqueProdutoChartDelivery.options.scales.x.ticks.color = cor
-    this.estoqueProdutoChartDelivery.update()
+    // this.estoqueProdutoChartDelivery.options.scales.x.ticks.color = cor
+    // this.estoqueProdutoChartDelivery.update()
   
-    this.chartVendasPorOrigemDelivery.options.scales.x.ticks.color = cor
-    this.chartVendasPorOrigemDelivery.update()
+    // this.chartVendasPorOrigemDelivery.options.scales.x.ticks.color = cor
+    // this.chartVendasPorOrigemDelivery.update()
     
 
   }
