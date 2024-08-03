@@ -86,7 +86,7 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
     ],
     vendasDelivery:[
       {
-        origem:"AiqFome",
+        origem:"aiqfome",
         vendaTotal:100,
         ticketMedio:123,
         numeroDePedidos:20,
