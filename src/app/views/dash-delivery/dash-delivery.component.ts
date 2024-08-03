@@ -93,7 +93,7 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
         cor:'#86137D'
       },
       {
-        origem:"iFood",
+        origem:"ifood",
         vendaTotal:1200,
         ticketMedio:111,
         numeroDePedidos:45,
