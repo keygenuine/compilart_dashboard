@@ -13,6 +13,7 @@ import { DeepPartial } from 'chart.js/dist/types/utils';
 import { getStyle, hexToRgba } from '@coreui/utils';
 import { ElementRef } from '@angular/core';
 import { CardModule } from '@coreui/angular';
+import { cilOptions } from '@coreui/icons';
 import zoomPlugin from 'chartjs-plugin-zoom';
 import {
   AvatarComponent,
@@ -42,11 +43,47 @@ import { Tabs2Module } from '@coreui/angular';
 import { ColorModeService } from '@coreui/angular';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { DropdownComponent } from '@coreui/angular';
 import { textChangeRangeIsUnchanged } from 'typescript';
+import { RouterLink } from '@angular/router';
+import { WidgetStatAComponent, TemplateIdDirective, ThemeDirective,DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective, DropdownDividerDirective } from '@coreui/angular';
 @Component({
   selector: 'app-dash-delivery',
   standalone: true,
-  imports: [CommonModule,CardModule,Tabs2Module,NgFor,BaseChartDirective,ContainerComponent,WidgetsDropdownComponent, TextColorDirective, CardComponent, CardBodyComponent, RowComponent, ColComponent, ButtonDirective, IconDirective, ReactiveFormsModule, ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent, GutterDirective, ProgressBarDirective, ProgressComponent, CardHeaderComponent, TableDirective, AvatarComponent],
+  imports: [
+    RouterLink,
+    DropdownComponent,
+    CommonModule,
+    CardModule,
+    Tabs2Module,
+    NgFor,
+    BaseChartDirective,
+    ContainerComponent,
+    WidgetsDropdownComponent,
+    TextColorDirective,
+    CardComponent, 
+    CardBodyComponent, 
+    RowComponent, 
+    ColComponent, 
+    ButtonDirective, 
+    IconDirective, 
+    ReactiveFormsModule, 
+    ButtonGroupComponent, 
+    FormCheckLabelDirective, 
+    ChartjsComponent, 
+    NgStyle, 
+    CardFooterComponent, 
+    GutterDirective, 
+    ProgressBarDirective, 
+    ProgressComponent, 
+    CardHeaderComponent, 
+    TableDirective, 
+    AvatarComponent,
+    DropdownToggleDirective, 
+    DropdownMenuDirective,
+    DropdownItemDirective, 
+    DropdownDividerDirective 
+  ],
   templateUrl: './dash-delivery.component.html',
   styleUrl: './dash-delivery.component.scss'
 })

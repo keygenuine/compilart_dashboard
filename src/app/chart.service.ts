@@ -119,7 +119,7 @@ export class ChartService {
         break;
       case 'estoqueProduto':
         tituloGrafico = 'Estoque do Top 10'
-        typeChart = 'pie'
+        typeChart = 'doughnut'
         displayX = false
         displayY = false
         legendPosition = 'bottom'
@@ -150,6 +150,9 @@ export class ChartService {
         displayY = false 
         displayGridY = false
         displayGridX = false
+        corFundoGrafico = chartContext.createLinearGradient(0, 0, 0, 700);
+        corFundoGrafico.addColorStop(0,corVerde);
+        corFundoGrafico.addColorStop(1,'rgba(0,0,0,0)'); 
         break
     }
     return new Chart(chartname,{

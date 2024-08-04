@@ -9,7 +9,9 @@
         color: white;
     }
 }
-
+.dropdown-toggle::after {
+    display: none; /* Remove a seta para baixo */
+  }
 #cardDelivery:hover{
     background-color: rgba(128, 128, 128, 0.199);
     transition:all ease-in 0.3s;
