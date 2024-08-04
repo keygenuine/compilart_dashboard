@@ -180,21 +180,7 @@ export class ChartService {
             display: true,
             text: tituloGrafico
           },
-          zoom: {
-            zoom: {
-              wheel: {
-                enabled: false,
-              },
-              pinch: {
-                enabled: true
-              },
-              mode: 'xy',
-            },
-            pan: {
-              enabled: true,
-              mode: 'x',
-            },
-          }
+
         },
         scales: {
           x: {

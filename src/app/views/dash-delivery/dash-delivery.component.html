@@ -1,40 +1,39 @@
 
 <c-row class="m-0">
-    <c-col lg="12" class="pt-3" style="background-color:black; min-height: 250px;">
-      <canvas baseChart id="chartFaturamentoDelivery" #chartFaturamentoDeliveryRef class="mb-3"> 
-    </canvas>
-    </c-col>
-  </c-row>
+  <c-col lg="12" class="pt-3" style="background-color:black; min-height: 250px;">
+    <canvas baseChart id="faturamentoChart" #faturamentoChartRef class="mb-3"> 
+  </canvas>
+  </c-col>
+</c-row>
   <app-widgets-dropdown [elements]="bankname"/>
 
   <c-row class="mt-4 px-4">
-
-        <c-col md="6" xl="12" xs="12" class="justify-content-center text-center" >
+        <c-col md="6" xl="12" xs="12" class="text-center" >
           <c-card-group class="mb-4" >
-            <c-card id="cardDelivery" *ngFor="let origem of jsonServer.vendasDelivery" 
-            class="d-flex justify-content-center"
-            [ngStyle]="{'border-color': dark==true ? origem.cor : 'none' , 'border-width':'0.5px'}"
-            >
-            <div>
+            <c-card id="cardDelivery" *ngFor="let origem of jsonServer.vendasDelivery; let i = index" 
+            [ngClass]="{
+              'cardClasseShow': cardClass[i], 
+              'cardClasse':!cardClass[i]}"
+            (click)="cardClass[i]=!cardClass[i]">
+            <div> 
               <img cCardImg="top" src="./assets/img/{{origem.origem}}.png" style="width: 200px;height: 200px;">
             </div>
               <c-card-body>
                 <!-- <h5 cCardTitle>Vendas {{origem.origem}}</h5> -->
                 <p cCardText>
-                  Total de Vendas: <strong>{{origem.vendaTotal}}</strong> <br/>
-                  Ticket Medio: <strong>{{origem.ticketMedio}}</strong><br/>
+                  Total de Vendas: <strong>R${{origem.vendaTotal}}</strong> <br/>
+                  Ticket Medio: <strong>R${{origem.ticketMedio}}</strong><br/>
                   Numero de Pedidos: <strong>{{origem.numeroDePedidos}}</strong><br/>
                 </p>
-                <div style="height: 300px;">
+                <div [ngStyle]="{
+                  'height':'300px',
+                }">
                   <canvas baseChart id="{{origem.origem}}" [height]="450" #chartVendasPorOrigemDeliveryRef class="mb-3"> </canvas> 
                 </div>
               </c-card-body>
             </c-card>
           </c-card-group>
         </c-col>
-        <c-col md="6" xl="12" xs="12">
-
-    </c-col>
   </c-row>
   
   <c-row class="mt-4 px-4">
@@ -75,9 +74,11 @@
                   <button cTab [itemKey]="1"><i class="fa-solid fa-arrow-right"></i></button>
                 </c-tabs-list>
                 <c-tabs-content>
-                  <c-tab-panel class="p-0 pt-3" [itemKey]="0" >
-                    <div *ngFor="let produtos of jsonServer.listaDeProdutos" class="progress-group mb-4 border rounded p-3 pe-5"  (click)="produtoGraficoGrupo(produtos.produto)">
-                      <div class="progress-group-prepend me-3">
+                  <c-tab-panel class="p-1 pt-3" [itemKey]="0" >
+                    <div *ngFor="let produtos of jsonServer.listaDeProdutos" 
+                    class="progress-group border rounded p-3"  
+                    (click)="produtoGraficoGrupo(produtos.produto)">
+                      <div class="progress-group-prepend me-3" >
                         <span class="text-body-secondary small d-flex me-3">
                           <i class="fa-solid fa-circle pt-1 me-3" style="color: green;"></i>
                           <div class="d-block">
@@ -86,15 +87,15 @@
                           </div>
                         </span>
                       </div>
-                      <div class="progress-group-bars ps-lg-5 pe-3">
+                      <div class="progress-group-bars ">
                         <span class="text-body-secondary small">
-                          <p >R${{produtos.custo}}</p>
+                          <p class="mb-1">R${{produtos.custo}}</p>
+                          <c-progress thin color="info" value="{{(produtos.custo/(produtos.custo+produtos.venda))*100}}" aria-label="Monday new clients" />
                         </span>
-                        <c-progress class="mb-2" thin color="info" value="{{(produtos.custo/(produtos.custo+produtos.venda))*100}}" aria-label="Monday new clients" />
-                        <span class="text-body-secondary small">
-                          <p>R${{produtos.venda}}</p>
+                        <span class="text-body-secondary small mt-3">
+                          <p  class="mb-1">R${{produtos.venda}}</p>
+                          <c-progress thin color="danger" value="{{(produtos.venda/(produtos.custo+produtos.venda))*100}}" aria-label="Monday recurring clients" />
                         </span>
-                        <c-progress thin color="danger" value="{{(produtos.venda/(produtos.custo+produtos.venda))*100}}" aria-label="Monday recurring clients" />
                       </div>
                     </div>
                   </c-tab-panel>
@@ -120,10 +121,10 @@
             </c-col>
             <c-col md="6" xl="6" xs="12">
               <c-row id="graficoGrupoScroll" class="mt-3">
-                <canvas id="vendasPorProdutoChartDelivery" [height]="450" #vendasPorProdutoChartDeliveryRef></canvas>
+                <canvas id="vendasPorProdutoChart" [height]="450" #vendasPorProdutoChartRef></canvas>
               </c-row>
               <c-row class="mt-3 pt-5">
-                <canvas id="estoqueProdutoChartDelivery" [height]="450" #estoqueProdutoChartDeliveryRef></canvas>
+                <canvas id="estoqueProdutoChart" [height]="450" #estoqueProdutoChartRef></canvas>
               </c-row>
             </c-col>
           </c-row>
@@ -131,6 +132,7 @@
       </c-card>
     </c-col>
   </c-row>
+
   <c-row class="px-4">
     <c-col xs>
       <c-card>

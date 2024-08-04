@@ -9,11 +9,21 @@
         color: white;
     }
 }
-#cardDeliveryLight{
-    border-color: none !important;
-}
+
 #cardDelivery:hover{
     background-color: rgba(128, 128, 128, 0.199);
+    transition:all ease-in 0.3s;
+}
+.cardClasse{
+    height: 300px !important;    
+    overflow: hidden;
+    transition:all ease-in 0.3s
+
+}
+.cardClasseShow{
+    height:600px !important;
+    overflow: hidden;
+    transition:all 0.3s;
 }
 b{
     color:#ff7676

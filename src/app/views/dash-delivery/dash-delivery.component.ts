@@ -52,22 +52,22 @@ import { textChangeRangeIsUnchanged } from 'typescript';
 })
 export class DashDeliveryComponent implements OnInit,AfterViewInit {
   bankname = [1, 18, 9, 171, 34, 22, 11]
-  private chartFaturamentoDelivery : any
+  private faturamentoChart : any
   private chartMotoboy : any
   private chartBairros : any
-  private vendasPorProdutoChartDelivery:any
-  private estoqueProdutoChartDelivery:any
+  private vendasPorProdutoChart:any
+  private estoqueProdutoChart:any
   private chartVendasPorOrigemDelivery1:any
   private chartVendasPorOrigemDelivery2:any
   private chartVendasPorOrigemDelivery3:any
   private chartVendasPorOrigemDelivery4:any
   private chartVendasPorOrigemDelivery5:any
   private chartBairrosDelivery:any
-  @ViewChild('chartFaturamentoDeliveryRef') chartFaturamentoDeliveryRef!: ElementRef;
+  @ViewChild('faturamentoChartRef') faturamentoChartRef!: ElementRef;
   @ViewChild('chartMotoboyRef') chartMotoboyRef!: ElementRef;
   @ViewChild('chartBairrosRef') chartBairrosRef!: ElementRef;
-  @ViewChild('vendasPorProdutoChartDeliveryRef') vendasPorProdutoChartDeliveryRef!: ElementRef;
-  @ViewChild('estoqueProdutoChartDeliveryRef') estoqueProdutoChartDeliveryRef!: ElementRef;
+  @ViewChild('vendasPorProdutoChartRef') vendasPorProdutoChartRef!: ElementRef;
+  @ViewChild('estoqueProdutoChartRef') estoqueProdutoChartRef!: ElementRef;
   @ViewChild('chartVendasPorOrigemDeliveryRef') chartVendasPorOrigemDeliveryRef!: ElementRef;
   @ViewChild('chartBairrosDeliveryRef') chartBairrosDeliveryRef!: ElementRef;
   getContext(chartRef:any){
@@ -90,35 +90,35 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
         vendaTotal:100,
         ticketMedio:123,
         numeroDePedidos:20,
-        cor:'#86137D'
+        // cor:'#86137D'
       },
       {
         origem:"ifood",
         vendaTotal:1200,
         ticketMedio:111,
         numeroDePedidos:45,
-        cor:'#EA1D29'
+        // cor:'#EA1D29'
       },
       {
         origem:"uairango",
         vendaTotal:1005,
         ticketMedio:122,
         numeroDePedidos:20,
-        cor:'#FF4F01'
+        // cor:'#FF4F01'
       },
       {
         origem:"upzap",
         vendaTotal:1450,
         ticketMedio:121,
         numeroDePedidos:44,
-        cor:'#78C67B'
+        // cor:'#78C67B'
       },
       {
         origem:"Estabelecimento",
         vendaTotal:1450,
         ticketMedio:121,
         numeroDePedidos:44,
-        cor:'black'
+        // cor:'black'
       },
     ]
   }
@@ -142,16 +142,16 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
     if(window.innerWidth<800){
       this.scroll(document.querySelector('#graficoGrupoScroll'))
     }
-    this.vendasPorProdutoChartDelivery.data.datasets[0].label=[produtos]
-    this.vendasPorProdutoChartDelivery.data.datasets[0].data=[100,20,44,4,15,0,7,8,159,10,15,12]
-    this.vendasPorProdutoChartDelivery.update()
+    this.vendasPorProdutoChart.data.datasets[0].label=[produtos]
+    this.vendasPorProdutoChart.data.datasets[0].data=[100,20,44,4,15,0,7,8,159,10,15,12]
+    this.vendasPorProdutoChart.update()
   }
   ngAfterViewInit(): void {
     Chart.register(Colors)
     Chart.register(zoomPlugin)
-    this.chartFaturamentoDelivery=this.chartService.newchart1('chartFaturamentoDelivery',this.getContext(this.chartFaturamentoDeliveryRef),'faturamento')
-    this.vendasPorProdutoChartDelivery = this.chartService.newchart1('vendasPorProdutoChartDelivery',this.getContext(this.vendasPorProdutoChartDeliveryRef),'vendasPorProduto')
-    this.estoqueProdutoChartDelivery = this.chartService.newchart1('estoqueProdutoChartDelivery',this.getContext(this.estoqueProdutoChartDeliveryRef),'estoqueProduto')
+    this.faturamentoChart=this.chartService.newchart1('faturamentoChart',this.getContext(this.faturamentoChartRef),'faturamento')
+    this.vendasPorProdutoChart = this.chartService.newchart1('vendasPorProdutoChart',this.getContext(this.vendasPorProdutoChartRef),'vendasPorProduto')
+    this.estoqueProdutoChart = this.chartService.newchart1('estoqueProdutoChart',this.getContext(this.estoqueProdutoChartRef),'estoqueProduto')
     this.chartMotoboy = this.chartService.newchart1('chartMotoboyDelivery',this.getContext(this.chartMotoboyRef),'chartMotoboy')
     this.chartBairrosDelivery = this.chartService.newchart1('chartBairrosDelivery',this.getContext(this.chartBairrosDeliveryRef),'vendasPorOrigem')
     this.chartVendasPorOrigemDelivery1 = this.chartService.newchart1(this.jsonServer.vendasDelivery[0].origem,this.getContext(this.chartVendasPorOrigemDeliveryRef),'delivery')
@@ -178,7 +178,12 @@ export class DashDeliveryComponent implements OnInit,AfterViewInit {
   verTema(){
     console.log(this.chartService.temaAtual)
   }
-
+  cardClass = [
+    true,
+    false,
+    false,
+    false,
+  ]
   
   private subscription?: Subscription;
   public currentGlobalValue?: string;
