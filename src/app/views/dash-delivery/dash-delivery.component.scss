@@ -1,14 +1,14 @@
 #bgAzul{
     background-color:#5856D6;
 }
-.progress-group:hover{
-    transition: 0.3s all;
-    background-color: #212631c7;
-    color:white !important;
-    p{
-        color: white;
-    }
-}
+// .progress-group:hover{
+//     transition: 0.3s all;
+//     background-color: #212631c7;
+//     color:white !important;
+//     p{
+//         color: white;
+//     }
+// }
 .dropdown-toggle::after {
     display: none; /* Remove a seta para baixo */
   }
@@ -32,6 +32,10 @@ b{
     // color:#86137D
     // color:#EA1D29
 }
+// #divProdutos{
+//     background: rgb(255,255,255);
+//     background: linear-gradient(90deg, rgb(255, 206, 206) 0%, rgba(211, 158, 162, 0.418) 100%, rgba(175, 78, 84, 0.37) 100%);
+// }
 @media only screen and (min-width: 800px) {
 .progress-group-prepend{
     min-width: 20px;

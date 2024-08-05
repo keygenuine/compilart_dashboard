@@ -98,6 +98,9 @@ export class ChartService {
     let borderRad = 0
     let corVerde = '#00ff26'
     let corAzul = '#7CBCCB'
+    let corVermelho = '#af4e55'
+    let corBranco = '#ffe5e5'
+    let corAzulClaro = '#7CBCCB'
 
     switch(tipoGrafico){
       case 'faturamento':
@@ -113,9 +116,12 @@ export class ChartService {
       case 'vendasPorProduto':
         tituloGrafico = 'Vendas Por Produto'
         displayGridY = false
-        corFundoGrafico = chartContext.createLinearGradient(0, 0, 0, 700);
-        corFundoGrafico.addColorStop(0,corAzul); 
-        corFundoGrafico.addColorStop(1,'rgba(0,0,0,0)'); 
+        corFundoGrafico = chartContext.createLinearGradient(0, 0, 0, 1500);
+        corFundoGrafico.addColorStop(0,corBranco); 
+        corFundoGrafico.addColorStop(1,corVermelho); 
+        // corFundoGrafico = chartContext.createLinearGradient(0, 0, 0, 700);
+        // corFundoGrafico.addColorStop(0,corAzul); 
+        // corFundoGrafico.addColorStop(1,'rgba(0,0,0,0)'); 
         break;
       case 'estoqueProduto':
         tituloGrafico = 'Estoque do Top 10'
@@ -129,8 +135,8 @@ export class ChartService {
         typeChart = 'line'
         displayGridY = false
         corFundoGrafico = chartContext.createLinearGradient(0, 0, 0, 700);
-        corFundoGrafico.addColorStop(0,corVerde); 
-        corFundoGrafico.addColorStop(1,'rgba(0,0,0,0)'); 
+        corFundoGrafico.addColorStop(0,corBranco); 
+        corFundoGrafico.addColorStop(1,corAzulClaro); 
         break
       case 'vendasPorOrigem':
         tituloGrafico = 'Vendas Por Origem'
@@ -138,8 +144,8 @@ export class ChartService {
         displayGridX = false
         borderRad = 5
         corFundoGrafico = chartContext.createLinearGradient(0, 0, 0, 700);
-        corFundoGrafico.addColorStop(0,corVerde);
-        corFundoGrafico.addColorStop(1,'rgba(0,0,0,0)'); 
+        corFundoGrafico.addColorStop(0,corBranco); 
+        corFundoGrafico.addColorStop(1,corVerde);
         break
       case 'vendasPorBairro':
         tituloGrafico = 'Vendas Por Bairros' 

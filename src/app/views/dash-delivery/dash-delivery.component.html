@@ -89,33 +89,50 @@
                 </c-tabs-list>
 
                 <c-tabs-content>
+
+
+
                   <c-tab-panel class="p-1 pt-3" [itemKey]="0" >
                     <div *ngFor="let produtos of jsonServer.listaDeProdutos" 
-                    class="progress-group border rounded p-1"  
-                    (click)="produtoGraficoGrupo(produtos.produto)">
-                      <div class="progress-group-prepend me-3 p-3" >
-                        <span class="text-body-secondary small d-flex me-3">
-                          <i class="fa-solid fa-circle pt-1 me-3" style="color: green;"></i>
-                          <div class="d-block">
-                            <p class="text-nowrap"><strong>{{produtos.produto}}</strong></p>
-                            <p class="text-nowrap">Id: {{produtos.id}}</p>
-                          </div>
-                        </span>
-                      </div>
-                      <div class="progress-group-bars d-flex ps-5">
-                        <span class="text-body-secondary small w-50 pe-1 ps-1">
-                          <p style="font-size: 10px; margin-bottom: 0px;">Custo</p>
-                          <p class="mb-0">R${{produtos.custo}}</p>
-                          <c-progress thin color="danger" value="{{(produtos.custo/(produtos.custo+produtos.venda))*100}}" aria-label="Custo" />
-                        </span>
-                        <span class="text-body-secondary small w-50 pe-1 ps-1" >
-                          <p style="font-size: 10px;margin-bottom: 0px;">Venda</p>
-                          <p  class="mb-0">R${{produtos.venda}}</p>
-                          <c-progress thin color="info" value="{{(produtos.venda/(produtos.custo+produtos.venda))*100}}" aria-label="Venda" />
-                        </span>
-                      </div>
+                    class="progress-group p-0"  
+                    (click)="produtoGraficoGrupo(produtos.produto)"
+                    id="divProdutos">
+                    <c-card class="mb-4 w-100" id="cardDelivery">
+                      <c-card-header style="background-color: rgba(128, 128, 128, 0.199);;">
+                        <div class="progress-group-prepend m-0 p-0 d-flex justify-content-start ps-3" >
+                          <span class="text-body-secondary small d-flex">
+                            <!-- <i class="fa-solid fa-circle " style="color: green;"></i> -->
+                            <div class="d-block">
+                              <p class="text-nowrap " style="font-size: 20px; text-align: center;text-transform: uppercase;"><strong>{{produtos.produto}}</strong></p><br/>
+                              <p class="text-nowrap " style="margin-top:-35px ;margin-bottom:-5px ">Id: {{produtos.id}}</p>
+                            </div>
+                          </span>
+                        </div>
+                      </c-card-header>
+                      <c-card-body>
+                        <div class="progress-group-bars d-flex ps-3">
+                          <span class="text-body-secondary small w-50 pe-1 ps-1">
+                            <p style="font-size: 10px; margin-bottom: 0px;">Custo</p>
+                            <p class="mb-0"><strong>R${{produtos.custo}}</strong></p>
+                            <c-progress thin color="danger" value="{{(produtos.custo/(produtos.custo+produtos.venda))*100}}" aria-label="Custo" />
+                          </span>
+                          <span class="text-body-secondary small w-50 pe-1 ps-1" >
+                            <p style="font-size: 10px;margin-bottom: 0px;">Venda</p>
+                            <p  class="mb-0"><strong>R${{produtos.venda}}</strong></p>
+                            <c-progress thin color="info" value="{{(produtos.venda/(produtos.custo+produtos.venda))*100}}" aria-label="Venda" />
+                          </span>
+                        </div>
+                      </c-card-body>
+                    </c-card>  
+
+
                     </div>
                   </c-tab-panel>
+
+
+
+
+
                   <c-tab-panel class="p-3" [itemKey]="1">
                     <strong>Profile</strong> tab content
                   </c-tab-panel>
